@@ -47,47 +47,56 @@ public class DueDateScheduler {
 
     }
 
-    @Scheduled(cron = "0 */1 * * * ?")
+    @Scheduled(cron = "${scheduler.done-last-day-cron}")
     public void listTaskDoneLastDay() {
 //        String jql = "project = HUB AND duedate < startOfDay() " +
 //                "AND statusCategory != Done " +
 //                "AND assignee IS NOT EMPTY";
         List<String> listProjects = new ArrayList<>();
 //        listProjects.add("HUB");
-//        listProjects.add("EDU");
+        listProjects.add("EDU");
         listProjects.add("GAM");
 
         for (String project: listProjects) {
-            String jql = String.format( """
-                project = %s
-                 AND Sprint in openSprints()
-                    AND resolutiondate >= startOfDay()
-                """, project);
+//            String jql = String.format( """
+//                project = "GAM"
+//                 AND Sprint in openSprints()
+//                    AND status = "TASK DONE IN DAY"
+//                """, project);
 
-            JiraSearchResponse response =
-                    jiraService.search(jql);
-            if(response.getIssues().isEmpty()){
-                String msg = String.format("\"\\uD83D\\uDCCA *Daily Report *\\\\nHôm nay chưa có task nào hoàn thành.\"");
-                notificationService.notifyDone(msg);
-            }
+            StringBuilder jqlBuilder = new StringBuilder();
+            jqlBuilder.append("project = ")
+                    .append(project)
+                    .append(" ")
+                    .append("AND Sprint in openSprints() ")
+                    .append("AND status = \"TASK DONE IN DAY\"");
+
+            String jql = jqlBuilder.toString();
+
+            JiraSearchResponse response = jiraService.search(jql);
+//            if(response.getIssues().isEmpty()){
+//                String msg = String.format("\"\\uD83D\\uDCCA *Daily Report *\\\\nHôm nay chưa có task nào hoàn thành.\"");
+//                notificationService.notifyDone(msg);
+//            }
             StringBuilder message = new StringBuilder("📊 *Daily Report *");
             message.append(project);
             message.append("\n");
             message.append("✅ Task hoàn thành hôm nay:\n");
+            if(response.getIssues().isEmpty()){
+                message.append("     - Hôm nay chưa có task nào hoàn thành.");
+            }
 
             response.getIssues().forEach(issue ->
-
-
                     message.append("- ")
-                            .append(issue.getKey())
+                            .append(issue.getKey()).append(" \n")
                             .append(" | *Task Name* :")
-                            .append(issue.getFields().getSummary())
+                            .append(issue.getFields().getSummary()).append(" \n")
                             .append(" \t *Assignee* : ")
-                            .append( issue.getFields().getAssignee() != null ? issue.getFields().getAssignee().getDisplayName() : "UnAssignee")
-                            .append("\t * Created *").append(this.changeFormat(issue.getFields().getCreated()))
-                            .append("\t * ⏱ Spent: *" ).append(issue.getFields().getTimespent() != null ?  issue.getFields().getTimespent()  / 3600 : "0").append(" Hour")
-                            .append(" / * Estimate: * ").append( issue.getFields().getTimeoriginalestimate() != null ?  issue.getFields().getTimeoriginalestimate()  / 3600 : "0").append(" Hour")
-                            .append("\t * Due date : * ").append(issue.getFields().getDuedate())
+                            .append( issue.getFields().getAssignee() != null ? issue.getFields().getAssignee().getDisplayName() : "Unassign").append(" \n")
+                            .append("\t * Created *").append(this.changeFormat(issue.getFields().getCreated())).append(" \n")
+                            .append("\t * ⏱ Spent: *" ).append(issue.getFields().getTimespent() != null ? (issue.getFields().getTimespent()  / 3600) + " Hour" : "Chưa log!")
+                            .append(" / * Estimate: * ").append( issue.getFields().getTimeoriginalestimate() != null ?  (issue.getFields().getTimeoriginalestimate()  / 3600) + " Hour" : "Chưa ước tính").append(" Hour").append(" \n")
+                            .append("\t * Due date : * ").append(issue.getFields().getDuedate() != null ? issue.getFields().getDuedate() : "Chưa có!").append(" \n")
                             .append(" \n")
             );
             message.append("\n➡️ Tổng: ").append(response.getIssues().size()).append(" task");
@@ -96,6 +105,7 @@ public class DueDateScheduler {
         }
 
     }
+
     private String changeFormat(String jiraTime){
 
         try {
