@@ -15,12 +15,12 @@ public class TelegramService {
     @Value("${telegram.bot-token}")
     private String botToken;
 
-    @Value("${telegram.chat-id}")
-    private String chatId;
+//    @Value("${telegram.chat-id}")
+//    private String chatId;
 
     private final RestTemplate restTemplate;
 
-    public void send(String message) {
+    public void send(String message, String chatId) {
         String url = "https://api.telegram.org/bot" + botToken + "/sendMessage";
 
         Map<String, String> body = new HashMap<>();

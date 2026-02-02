@@ -49,7 +49,7 @@ public class NotificationService {
 ////        logRepository.save(issue.getKey(), "STATUS");
 //    }
 
-    public void notifyDue(Issue issue, String type,String projectName) {
+    public void notifyDue(Issue issue, String type,String projectName, String chatId) {
 
 //        if (logRepository.sent(issue.getKey(), type)) return;
 
@@ -70,10 +70,10 @@ public class NotificationService {
                 issue.getFields().getDuedate()
         );
 
-        telegramService.send(msg);
+        telegramService.send(msg, chatId);
 //        logRepository.save(issue.getKey(), type);
     }
-    public void notifyDone(String msg) {
-        telegramService.send(msg);
+    public void notifyDone(String msg, String chatId) {
+        telegramService.send(msg, chatId);
     }
 }

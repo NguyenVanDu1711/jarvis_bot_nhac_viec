@@ -1,0 +1,12 @@
+[
+  {
+    "telegramId": "12345",
+    "jiraUserId": "557058:abcd1234",
+    "fullName": "Nguyen Van A"
+  },
+  {
+    "telegramId": "67890",
+    "jiraUserId": "557058:efgh5678",
+    "fullName": "Tran Thi B"
+  }
+]
