@@ -5,14 +5,14 @@ import com.jarvis.notification.service.JiraService;
 import com.jarvis.notification.service.NotificationService;
 import io.micrometer.common.util.StringUtils;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Component
@@ -21,6 +21,9 @@ public class DueDateScheduler {
 
     private final JiraService jiraService;
     private final NotificationService notificationService;
+
+    @Value("${telegram.chat-id}")
+    private String chatId;
 
 //    @Scheduled(cron = "${scheduler.due-cron}")
 //    @Scheduled(cron = "0 */1 * * * ?")
@@ -54,12 +57,8 @@ public class DueDateScheduler {
 
     }
 
-//    @Scheduled(cron = "${scheduler.done-last-day-cron}")
-//    @Scheduled(cron = "0 */1 * * * ?")
+    @Scheduled(cron = "${scheduler.done-last-day-cron}")
     public void listTaskDoneLastDay() {
-//        String jql = "project = HUB AND duedate < startOfDay() " +
-//                "AND statusCategory != Done " +
-//                "AND assignee IS NOT EMPTY";
         Map<String, String> projectMap = new HashMap<>();
 //        listProjects.add("HUB");
         projectMap.put("EDU", "-1003643996267");
@@ -69,12 +68,6 @@ public class DueDateScheduler {
 
         for (Map.Entry<String, String> entry: projectMap.entrySet()) {
             if (StringUtils.isBlank(entry.getValue())) continue;
-//            String jql = String.format( """
-//                project = "GAM"
-//                 AND Sprint in openSprints()
-//                    AND status = "TASK DONE IN DAY"
-//                """, project);
-
             StringBuilder jqlBuilder = new StringBuilder();
             jqlBuilder.append("project = ")
                     .append(entry.getKey())
@@ -85,10 +78,6 @@ public class DueDateScheduler {
             String jql = jqlBuilder.toString();
 
             JiraSearchResponse response = jiraService.search(jql);
-//            if(response.getIssues().isEmpty()){
-//                String msg = String.format("\"\\uD83D\\uDCCA *Daily Report *\\\\nHôm nay chưa có task nào hoàn thành.\"");
-//                notificationService.notifyDone(msg);
-//            }
             StringBuilder message = new StringBuilder("📊 *Daily Report *");
             message.append(entry.getKey());
             message.append("\n");
@@ -117,13 +106,13 @@ public class DueDateScheduler {
 
     }
 
-//    @Scheduled(cron = "${scheduler.in-progress-cron}")
+    @Scheduled(cron = "${scheduler.in-progress-cron}")
 //    @Scheduled(cron = "0 */1 * * * ?")
     public void listTaskInProgress() {
         Map<String, String> projectMap = new HashMap<>();
-//        projectMap.put("EDU", "-1003643996267");
-        projectMap.put("GAM", "-5232128343");
-//        projectMap.put("JJW", "-4507267566");
+        projectMap.put("EDU", "-1003643996267");
+        projectMap.put("GAM", "-4852912535");
+        projectMap.put("JJW", "-4507267566");
         projectMap.put("FTTHBIL", "");
         projectMap.put("VCCIP", "-5060611918");
 
@@ -164,7 +153,7 @@ public class DueDateScheduler {
                             .append("\t * Due date : * ").append(issue.getFields().getDuedate() != null ? issue.getFields().getDuedate() : "Chưa có!").append(" \n")
                             .append(" \n")
             );
-            message.append("\n➡️ Tổng: ").append(response.getIssues().size()).append(" task");
+            message.append("\n➡️ Tổng: ").append(response.getIssues().size()).append(" task sẽ thực hiện vào ngày ").append(LocalDate.now());
 
             notificationService.notifyDone(message.toString(), entry.getValue());
         }
@@ -172,8 +161,7 @@ public class DueDateScheduler {
 
 
 
-    private String changeFormat(String jiraTime){
-
+    private String changeFormat(String jiraTime) {
         try {
             DateTimeFormatter inputFormatter =
                     DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
@@ -190,5 +178,4 @@ public class DueDateScheduler {
         }
 
     }
-
 }

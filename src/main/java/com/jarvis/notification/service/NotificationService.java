@@ -27,7 +27,7 @@ public class NotificationService {
                 issue.getFields().getSummary()
         );
 
-        telegramService.send(msg);
+//        telegramService.send(msg);
 //        logRepository.save(issue.getKey(), "ASSIGN");
     }
 //

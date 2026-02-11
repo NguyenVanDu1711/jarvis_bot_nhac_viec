@@ -4,5 +4,5 @@ public record TaskDto(
         String issueKey,
         String summary,
         String dueDate,
-        Integer timeSpent
+        String timeSpent
 ) {}

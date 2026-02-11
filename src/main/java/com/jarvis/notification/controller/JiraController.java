@@ -21,7 +21,7 @@ public class JiraController {
      */
     @GetMapping
     public List<TaskDto> getTasks(@RequestParam String telegramId) {
-        return jiraService.searchTasksByTelegramId(telegramId);
+        return jiraService.searchTasksByTelegramUsername(telegramId);
     }
 
     /**
