@@ -1,0 +1,68 @@
+📊 *END OF DAY REPORT* 🔴
+📅 *Date:* 2026-08-17
+🕒 *Generated:* 2026-08-17 22:30:00
+🕑 *Timezone:* Asia/Ho_Chi_Minh
+━━━━━━━━━━━━━━━━━━━━━━
+🔎 *Overall*
+• Due today: *17*
+• Done late: *0*
+• Done on time: *1*
+• Testing: *10*
+• Not done: *6*
+• Late records: *5*
+• Completion rate: *6%*
+━━━━━━━━━━━━━━━━━━━━━━
+⚠️ *Late Tasks*
+🚨 *TOTO*
+🔴 Tu NA chậm task TOTO-118 - Xác nhận vé và thanh toán
+   ⏰ Deadline: 17/Aug/26 17:15 | ⌛ Chậm: 15 phút
+🔴 Tu NA chậm task TOTO-120 - Xử lý thanh toán thất bại hoặc pending
+   ⏰ Deadline: 17/Aug/26 17:21 | ⌛ Chậm: 9 phút
+🔴 Duc NMT chậm task TOTO-126 - Task 1: Auto open/close round
+   ⏰ Deadline: 17/Aug/26 10:34 | ⌛ Chậm: 386 phút
+🔴 Nam Tran chậm task TOTO-122 - Xem round đang mở trên web
+   ⏰ Deadline: 17/Aug/26 10:25 | ⌛ Chậm: 395 phút
+🔴 Nam Tran chậm task TOTO-124 - Story 2: Nhập 10 lựa chọn dự đoán trên web
+   ⏰ Deadline: 17/Aug/26 14:28 | ⌛ Chậm: 122 phút
+
+2. *Task hoàn thành đúng thời gian*
+🟢 *TOTO*
+🟢 Trang K done on time TOTO-130 - Bổ sung luồng thanh toán betting: design + tài liệu
+
+3. *Task đang Testing*
+🟡 *TOTO*
+🟡 Kai is testing TOTO-137 - Sidebar – 2 modules "Product Management" and "Game Config Management" have overlapping functionality
+🟡 Kai is testing TOTO-136 - Edit Product Screen – Only allow editing when Inactive
+🟡 Kai is testing TOTO-134 - Round List Screen – Add "Lock Ticket Time" field
+🟡 Kai is testing TOTO-133 - Round Detail Screen – Remove the "Matches" field
+🟡 Nam Tran is testing TOTO-125 - Story 4: Xử lý thanh toán thất bại hoặc pending
+🟡 Nam Tran is testing TOTO-124 - Story 2: Nhập 10 lựa chọn dự đoán trên web
+🟡 Nam Tran is testing TOTO-122 - Xem round đang mở trên web
+🟡 Nam Tran is testing TOTO-119 - Mua betting qua WEB
+🟡 Tu NA is testing TOTO-117 - Story 2: Nhập 10 lựa chọn dự đoán trên USSD
+🟡 Tu NA is testing TOTO-116 - Xem round đang mở trên USSD
+
+4. *Not done - cần chú ý ngay*
+🚨 *TOTO*
+🔴 Son Nguyen chưa xong task TOTO-141 - Test tính năng package CRUD CMS 
+   ⚠️ Nghiêm trọng: task đã tới hạn nhưng chưa ở Done/Testing, có thể ảnh hưởng deadline, phụ thuộc sprint và cam kết đầu ra.
+🔴 Nam Tran chưa xong task TOTO-139 - [BE] Lỗi Submit Predict
+   ⚠️ Nghiêm trọng: task đã tới hạn nhưng chưa ở Done/Testing, có thể ảnh hưởng deadline, phụ thuộc sprint và cam kết đầu ra.
+🔴 Duc NMT chưa xong task TOTO-127 - Task 2: Xác nhận kết quả trận đấu
+   ⚠️ Nghiêm trọng: task đã tới hạn nhưng chưa ở Done/Testing, có thể ảnh hưởng deadline, phụ thuộc sprint và cam kết đầu ra.
+🔴 Duc NMT chưa xong task TOTO-126 - Task 1: Auto open/close round
+   ⚠️ Nghiêm trọng: task đã tới hạn nhưng chưa ở Done/Testing, có thể ảnh hưởng deadline, phụ thuộc sprint và cam kết đầu ra.
+🔴 Tu NA chưa xong task TOTO-120 - Xử lý thanh toán thất bại hoặc pending
+   ⚠️ Nghiêm trọng: task đã tới hạn nhưng chưa ở Done/Testing, có thể ảnh hưởng deadline, phụ thuộc sprint và cam kết đầu ra.
+🔴 Tu NA chưa xong task TOTO-118 - Xác nhận vé và thanh toán
+   ⚠️ Nghiêm trọng: task đã tới hạn nhưng chưa ở Done/Testing, có thể ảnh hưởng deadline, phụ thuộc sprint và cam kết đầu ra.
+
+━━━━━━━━━━━━━━━━━━━━━━
+🚩 *Summary*
+• Late done: *5*
+• Done on time: *1*
+• Testing: *10*
+• Not done: *6*
+• Total due today: *17*
+• Completion rate: *6%*
+• Late source: `deadline-log-2026-08-17.txt`

@@ -1,0 +1,5 @@
+project	key	summary	assignee	duedate	deadline	overdueMinutes	checkedAt
+project=TOTO	key=TOTO-150	summary=Quỹ thưởng + màn hình result trận đấu	assignee=Trang K	duedate=2026-08-18	deadline=18/Aug/26 05:22	overdueMinutes=277	checkedAt=2026-08-18T10:00:00.386051+07:00
+project=TOTO	key=TOTO-121	summary=Story 5: Xem transaction history / tra cứu vé	assignee=Duc NMT	duedate=2026-08-18	deadline=18/Aug/26 10:23	overdueMinutes=12	checkedAt=2026-08-18T10:35:47.402723+07:00
+project=TOTO	key=TOTO-115	summary=Mua betting qua USSD	assignee=Tu NA	duedate=2026-08-18	deadline=18/Aug/26 10:10	overdueMinutes=25	checkedAt=2026-08-18T10:35:48.751627+07:00
+project=TOTO	key=TOTO-142	summary=Thương test lại module affildate CMS CRUD	assignee=Thuong Phan	duedate=2026-08-18	deadline=18/Aug/26 11:12	overdueMinutes=157	checkedAt=2026-08-18T13:49:56.677362+07:00

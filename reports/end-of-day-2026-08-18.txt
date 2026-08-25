@@ -1,0 +1,49 @@
+📊 *END OF DAY REPORT* 🟠
+📅 *Date:* 2026-08-18
+🕒 *Generated:* 2026-08-18 09:32:00
+🕑 *Timezone:* Asia/Ho_Chi_Minh
+━━━━━━━━━━━━━━━━━━━━━━
+🔎 *Overall*
+• Due today: *10*
+• Done late: *0*
+• Done on time: *0*
+• Testing: *0*
+• Not done: *10*
+• Late records: *0*
+• Completion rate: *0%*
+━━━━━━━━━━━━━━━━━━━━━━
+⚠️ *Late Tasks*
+2. *Task hoàn thành đúng thời gian*
+3. *Task đang Testing*
+4. *Not done - cần chú ý ngay*
+🚨 *TOTO*
+🔴 Trang K chưa xong task TOTO-150 - Quỹ thưởng + màn hình result trận đấu 
+   ⚠️ Nghiêm trọng: task đã tới hạn nhưng chưa ở Done/Testing, có thể ảnh hưởng deadline, phụ thuộc sprint và cam kết đầu ra.
+🔴 Kai chưa xong task TOTO-147 - FE 18.12.5 Action - View Affiliate Reward Withdrawal History
+   ⚠️ Nghiêm trọng: task đã tới hạn nhưng chưa ở Done/Testing, có thể ảnh hưởng deadline, phụ thuộc sprint và cam kết đầu ra.
+🔴 Duc NMT chưa xong task TOTO-146 - Code BE 18.12.5 Action - View Affiliate Reward Withdrawal History
+   ⚠️ Nghiêm trọng: task đã tới hạn nhưng chưa ở Done/Testing, có thể ảnh hưởng deadline, phụ thuộc sprint và cam kết đầu ra.
+🔴 Duc NMT chưa xong task TOTO-145 - USSD Affiliate Debit Wallet Guide & CMS check BRD 18.12.5 Action - View Affiliate Reward Withdrawal History
+   ⚠️ Nghiêm trọng: task đã tới hạn nhưng chưa ở Done/Testing, có thể ảnh hưởng deadline, phụ thuộc sprint và cam kết đầu ra.
+🔴 Thuong Phan chưa xong task TOTO-144 - Trang test USSD Affiliate Debit Wallet Guide
+   ⚠️ Nghiêm trọng: task đã tới hạn nhưng chưa ở Done/Testing, có thể ảnh hưởng deadline, phụ thuộc sprint và cam kết đầu ra.
+🔴 Thuong Phan chưa xong task TOTO-142 - Thương test lại module affildate CMS CRUD
+   ⚠️ Nghiêm trọng: task đã tới hạn nhưng chưa ở Done/Testing, có thể ảnh hưởng deadline, phụ thuộc sprint và cam kết đầu ra.
+🔴 Tu NA chưa xong task TOTO-129 - Refund về Promotional Wallet cho exception nghiệp vụ
+   ⚠️ Nghiêm trọng: task đã tới hạn nhưng chưa ở Done/Testing, có thể ảnh hưởng deadline, phụ thuộc sprint và cam kết đầu ra.
+🔴 Duc NMT chưa xong task TOTO-128 - Tra cứu kết quả vé qua App và USSD
+   ⚠️ Nghiêm trọng: task đã tới hạn nhưng chưa ở Done/Testing, có thể ảnh hưởng deadline, phụ thuộc sprint và cam kết đầu ra.
+🔴 Duc NMT chưa xong task TOTO-121 - Story 5: Xem transaction history / tra cứu vé
+   ⚠️ Nghiêm trọng: task đã tới hạn nhưng chưa ở Done/Testing, có thể ảnh hưởng deadline, phụ thuộc sprint và cam kết đầu ra.
+🔴 Tu NA chưa xong task TOTO-115 - Mua betting qua USSD 
+   ⚠️ Nghiêm trọng: task đã tới hạn nhưng chưa ở Done/Testing, có thể ảnh hưởng deadline, phụ thuộc sprint và cam kết đầu ra.
+
+━━━━━━━━━━━━━━━━━━━━━━
+🚩 *Summary*
+• Late done: *0*
+• Done on time: *0*
+• Testing: *0*
+• Not done: *10*
+• Total due today: *10*
+• Completion rate: *0%*
+• Late source: `deadline-log-2026-08-18.txt`

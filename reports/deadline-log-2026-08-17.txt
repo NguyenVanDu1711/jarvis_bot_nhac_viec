@@ -1,0 +1,11 @@
+project	key	summary	assignee	duedate	deadline	overdueMinutes	checkedAt
+project=TOTO	key=TOTO-118	summary=Xác nhận vé và thanh toán	assignee=Tu NA	duedate=2026-08-17	deadline=17/Aug/26 17:15	overdueMinutes=15	checkedAt=2026-08-17T17:30:00+07:00
+project=TOTO	key=TOTO-120	summary=Xử lý thanh toán thất bại hoặc pending	assignee=Tu NA	duedate=2026-08-17	deadline=17/Aug/26 17:21	overdueMinutes=9	checkedAt=2026-08-17T17:30:00+07:00
+project=TOTO	key=TOTO-126	summary=Task 1: Auto open/close round	assignee=Duc NMT	duedate=2026-08-17	deadline=17/Aug/26 10:34	overdueMinutes=386	checkedAt=2026-08-17T17:30:00+07:00
+project=TOTO	key=TOTO-122	summary=Xem round đang mở trên web	assignee=Nam Tran	duedate=2026-08-17	deadline=17/Aug/26 10:25	overdueMinutes=395	checkedAt=2026-08-17T17:30:00+07:00
+project=TOTO	key=TOTO-124	summary=Story 2: Nhập 10 lựa chọn dự đoán trên web	assignee=Nam Tran	duedate=2026-08-17	deadline=17/Aug/26 14:28	overdueMinutes=122	checkedAt=2026-08-17T17:30:00+07:00
+
+SUMMARY
+Total late tasks: 5
+Unique task keys: 5
+Duplicated notifications removed: 2
