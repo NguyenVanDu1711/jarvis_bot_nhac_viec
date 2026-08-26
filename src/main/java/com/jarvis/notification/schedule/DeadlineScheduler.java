@@ -78,7 +78,7 @@ public class DeadlineScheduler {
 
             String jql = String.format("""
                 project = %s
-                AND duedate = startOfDay()
+                AND duedate <= startOfDay()
                 AND %s
                 AND assignee IS NOT EMPTY
                 """, project, deadlineStatusJql);
