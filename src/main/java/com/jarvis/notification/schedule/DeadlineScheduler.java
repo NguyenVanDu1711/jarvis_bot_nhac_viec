@@ -31,7 +31,6 @@ import java.util.List;
 import java.util.Set;
 
 @Component
-@RequiredArgsConstructor
 @Slf4j
 public class DeadlineScheduler {
 
@@ -44,6 +43,13 @@ public class DeadlineScheduler {
     private final JiraService jiraService;
     private final NotificationService notificationService;
     private final ProjectConfig projectConfig;
+
+    public DeadlineScheduler(JiraService jiraService, NotificationService notificationService, ProjectConfig projectConfig) {
+        this.jiraService = jiraService;
+        this.notificationService = notificationService;
+        this.projectConfig = projectConfig;
+    }
+
 
     @Value("${jira.deadline-field-key:customfield_10301}")
     private String deadlineFieldKey;
