@@ -1,5 +1,6 @@
 package com.jarvis.notification.schedule;
 
+import com.jarvis.notification.config.ProjectConfig;
 import com.jarvis.notification.dto.Fields;
 import com.jarvis.notification.dto.Issue;
 import com.jarvis.notification.dto.JiraSearchResponse;
@@ -42,6 +43,7 @@ public class DeadlineScheduler {
 
     private final JiraService jiraService;
     private final NotificationService notificationService;
+    private final ProjectConfig projectConfig;
 
     @Value("${jira.deadline-field-key:customfield_10301}")
     private String deadlineFieldKey;
@@ -69,9 +71,8 @@ public class DeadlineScheduler {
             log.info("DeadlineScheduler skipped because currentTime={} is outside working hours", currentTime);
             return;
         }
-
-        List<String> listProjects = new ArrayList<>();
-        listProjects.add("TOTO");
+        List<String> listProjects = projectConfig.list();
+        log.info("DeadlineScheduler listProjects={}", listProjects);
 
         for (String project : listProjects) {
             log.debug("DeadlineScheduler processing project={}", project);
