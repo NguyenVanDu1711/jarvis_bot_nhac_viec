@@ -56,7 +56,9 @@ public class EndOfDayReportScheduler {
     private String deadlineOutputDir;
 
     // Cuối ngày 18:00
-    @Scheduled(cron = "0 0 18 * * ?")
+    @Scheduled(
+            cron = "${scheduler.done-last-day-cron:0 0 18 * * MON-FRI}",
+            zone = "${scheduler.done-last-day-zone:Asia/Ho_Chi_Minh}")
 //    @Scheduled(cron = "0 */1 * * * ?")
     public void sendEndOfDayReport() {
         log.info("EndOfDayReportScheduler.sendEndOfDayReport started");

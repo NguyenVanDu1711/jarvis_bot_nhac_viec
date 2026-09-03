@@ -64,7 +64,9 @@ public class DeadlineScheduler {
     private String deadlineOutputDir;
 
     // Chạy mỗi 30 phút
-    @Scheduled(cron = "0 */30 * * * ?")
+    @Scheduled(
+            cron = "${scheduler.deadline-cron:0 */30 * * * MON-FRI}",
+            zone = "${scheduler.deadline-zone:Asia/Ho_Chi_Minh}")
     public void remindDeadline() {
         log.info("DeadlineScheduler.remindDeadline started");
 
