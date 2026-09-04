@@ -6,7 +6,6 @@ import com.jarvis.notification.dto.Issue;
 import com.jarvis.notification.dto.JiraSearchResponse;
 import com.jarvis.notification.service.JiraService;
 import com.jarvis.notification.service.NotificationService;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -24,11 +23,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
 
 @Component
 @Slf4j

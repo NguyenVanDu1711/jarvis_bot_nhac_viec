@@ -1,5 +1,6 @@
 package com.jarvis.notification.schedule;
 
+import com.jarvis.notification.config.ProjectConfig;
 import com.jarvis.notification.dto.Issue;
 import com.jarvis.notification.dto.JiraSearchResponse;
 import com.jarvis.notification.service.JiraService;
@@ -36,6 +37,7 @@ public class EndOfDayReportScheduler {
 
     private final JiraService jiraService;
     private final NotificationService notificationService;
+    private final ProjectConfig projectConfig;
 
     @Value("${jira.report-zone-id:Asia/Ho_Chi_Minh}")
     private String zoneId;
@@ -67,7 +69,7 @@ public class EndOfDayReportScheduler {
         LocalDate today = LocalDate.now(zone);
         LocalDateTime generatedAt = LocalDateTime.now(zone);
 
-        List<String> projects = parseProjects(reportProjects);
+        List<String> projects = projectConfig.list();
         List<DeadlineRecord> deadlineRecords = readDeadlineRecords(today);
         Map<String, List<DeadlineRecord>> recordsByProject = groupByProject(deadlineRecords);
         Set<String> lateKeys = new HashSet<>();
@@ -141,14 +143,14 @@ public class EndOfDayReportScheduler {
                     testingIssues,
                     notDoneIssues
             ));
+
+            String txtReport = buildTextReport(today, generatedAt, summaries, totalDueToday, totalDoneLate, totalDoneOnTime, totalTesting, totalLate, totalNotDone);
+            writeReportFile(today, txtReport, project);
+//            notificationService.notifyDone(txtReport);
+
+            log.info("EndOfDayReportScheduler.sendEndOfDayReport finished project={} totalDueToday={} totalDoneLate={} totalDoneOnTime={} totalTesting={} totalLate={} totalNotDone={}",
+                    project, totalDueToday, totalDoneLate, totalDoneOnTime, totalTesting, totalLate, totalNotDone);
         }
-
-        String txtReport = buildTextReport(today, generatedAt, summaries, totalDueToday, totalDoneLate, totalDoneOnTime, totalTesting, totalLate, totalNotDone);
-        writeReportFile(today, txtReport);
-
-        notificationService.notifyDone(txtReport);
-        log.info("EndOfDayReportScheduler.sendEndOfDayReport finished totalDueToday={} totalDoneLate={} totalDoneOnTime={} totalTesting={} totalLate={} totalNotDone={}",
-                totalDueToday, totalDoneLate, totalDoneOnTime, totalTesting, totalLate, totalNotDone);
     }
 
     private String buildTextReport(LocalDate today,
@@ -304,12 +306,12 @@ public class EndOfDayReportScheduler {
                 """, project, today, reportTestingJql);
     }
 
-    private void writeReportFile(LocalDate today, String content) {
+    private void writeReportFile(LocalDate today, String content, String project) {
         try {
             Path dir = Paths.get(reportOutputDir);
             Files.createDirectories(dir);
 
-            Path file = dir.resolve("end-of-day-" + today.format(DateTimeFormatter.ISO_LOCAL_DATE) + ".txt");
+            Path file = dir.resolve("end-of-day-" + project + "-" + today.format(DateTimeFormatter.ISO_LOCAL_DATE) + ".txt");
             Files.writeString(file, content, StandardCharsets.UTF_8);
             log.info("EndOfDayReportScheduler wrote report file={}", file.toAbsolutePath());
         } catch (IOException e) {
