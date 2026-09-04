@@ -77,16 +77,17 @@ public class EndOfDayReportScheduler {
             lateKeys.add(record.key());
         }
 
-        int totalDoneLate = 0;
-        int totalDoneOnTime = 0;
-        int totalTesting = 0;
-        int totalLate = deadlineRecords.size();
-        int totalDueToday = 0;
-        int totalNotDone = 0;
-
-        List<ProjectSummary> summaries = new ArrayList<>();
-
         for (String project : projects) {
+            List<ProjectSummary> summaries = new ArrayList<>();
+            int totalDoneLate = 0;
+            int totalDoneOnTime = 0;
+            int totalTesting = 0;
+            int totalLate = (int) deadlineRecords.stream()
+                    .filter(record -> project.equals(record.project()))
+                    .count();
+            int totalDueToday = 0;
+            int totalNotDone = 0;
+
             JiraSearchResponse dueTodayResponse = jiraService.search(buildDueTodayJql(project, today));
             JiraSearchResponse doneResponse = jiraService.search(buildDoneTodayJql(project, today));
             JiraSearchResponse testingResponse = jiraService.search(buildTestingTodayJql(project, today));
@@ -146,7 +147,7 @@ public class EndOfDayReportScheduler {
 
             String txtReport = buildTextReport(today, generatedAt, summaries, totalDueToday, totalDoneLate, totalDoneOnTime, totalTesting, totalLate, totalNotDone);
             writeReportFile(today, txtReport, project);
-//            notificationService.notifyDone(txtReport);
+            notificationService.notifyDone(txtReport);
 
             log.info("EndOfDayReportScheduler.sendEndOfDayReport finished project={} totalDueToday={} totalDoneLate={} totalDoneOnTime={} totalTesting={} totalLate={} totalNotDone={}",
                     project, totalDueToday, totalDoneLate, totalDoneOnTime, totalTesting, totalLate, totalNotDone);
