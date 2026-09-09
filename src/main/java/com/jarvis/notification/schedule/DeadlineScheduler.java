@@ -1,11 +1,11 @@
 package com.jarvis.notification.schedule;
 
+import com.jarvis.notification.config.ProjectConfig;
 import com.jarvis.notification.dto.Fields;
 import com.jarvis.notification.dto.Issue;
 import com.jarvis.notification.dto.JiraSearchResponse;
 import com.jarvis.notification.service.JiraService;
 import com.jarvis.notification.service.NotificationService;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -23,14 +23,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
 
 @Component
-@RequiredArgsConstructor
 @Slf4j
 public class DeadlineScheduler {
 
@@ -42,6 +37,14 @@ public class DeadlineScheduler {
 
     private final JiraService jiraService;
     private final NotificationService notificationService;
+    private final ProjectConfig projectConfig;
+
+    public DeadlineScheduler(JiraService jiraService, NotificationService notificationService, ProjectConfig projectConfig) {
+        this.jiraService = jiraService;
+        this.notificationService = notificationService;
+        this.projectConfig = projectConfig;
+    }
+
 
     @Value("${jira.deadline-field-key:customfield_10301}")
     private String deadlineFieldKey;
@@ -56,7 +59,9 @@ public class DeadlineScheduler {
     private String deadlineOutputDir;
 
     // Chạy mỗi 30 phút
-    @Scheduled(cron = "0 */30 * * * ?")
+    @Scheduled(
+            cron = "${scheduler.deadline-cron:0 */30 * * * MON-FRI}",
+            zone = "${scheduler.deadline-zone:Asia/Ho_Chi_Minh}")
     public void remindDeadline() {
         log.info("DeadlineScheduler.remindDeadline started");
 
@@ -69,9 +74,8 @@ public class DeadlineScheduler {
             log.info("DeadlineScheduler skipped because currentTime={} is outside working hours", currentTime);
             return;
         }
-
-        List<String> listProjects = new ArrayList<>();
-        listProjects.add("TOTO");
+        List<String> listProjects = projectConfig.list();
+        log.info("DeadlineScheduler listProjects={}", listProjects);
 
         for (String project : listProjects) {
             log.debug("DeadlineScheduler processing project={}", project);
